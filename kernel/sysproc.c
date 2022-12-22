@@ -89,3 +89,23 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+
+uint64
+sys_trace(void)
+{
+  int n;
+  argint(0, &n);
+  return trace(n);
+}
+
+uint64
+sys_sysinfo(void)
+{
+  int free = freemem();
+  int nproc = getprocnum();
+  printf("\nsysinfo system call prints:\n");
+  printf("free memory: %d bytes\n", free);
+  printf("n_proc: %d\n\n", nproc);
+  return free;
+}
